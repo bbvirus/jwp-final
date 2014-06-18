@@ -30,7 +30,9 @@ public class SaveQuestionController implements Controller {
 		// 새롭게 등록된 질문을 포함하는 리스트를 보여주는 List 페이지로 이동시키기 위해
 		// DB에서 질문들 목록을 읽어오는 부분
 		questions = questionDao.findAll();
-		request.setAttribute("questions", questions);
+		synchronized (request) {
+			request.setAttribute("questions", questions);
+		}
 
 		return "list.jsp";
 	}

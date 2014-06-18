@@ -23,8 +23,12 @@ public class ShowController implements Controller {
 		long questionId = Long.parseLong(request.getParameter("questionId"));
 		question = questionDao.findById(questionId);
 		answers = answerDao.findAllByQuestionId(questionId);
-		request.setAttribute("question", question);
-		request.setAttribute("answers", answers);
+		
+		synchronized (request) {
+			request.setAttribute("question", question);
+			request.setAttribute("answers", answers);
+		}
+		
 		return "show.jsp";
 	}
 }

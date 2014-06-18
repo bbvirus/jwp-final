@@ -17,7 +17,11 @@ public class ListController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		questions = questionDao.findAll();
-		request.setAttribute("questions", questions);
+		
+		synchronized(request) {
+			request.setAttribute("questions", questions);
+		}
+		
 		return "list.jsp";
 	}
 }
