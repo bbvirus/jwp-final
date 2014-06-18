@@ -5,6 +5,7 @@ import java.util.Map;
 
 import next.controller.AnswerController;
 import next.controller.ListController;
+import next.controller.MobileListController;
 import next.controller.SaveQuestionController;
 import next.controller.ShowController;
 
@@ -21,6 +22,7 @@ public class RequestMapping {
 		mappings.put("/form.next", new ForwardController("form.jsp"));
 		mappings.put("/save.next", new SaveQuestionController());
 		mappings.put("/api/addanswer.next", new AnswerController());
+		mappings.put("/api/list.next", new MobileListController());
 		
 		logger.info("Initialized Mapping Completed!");
 	}
